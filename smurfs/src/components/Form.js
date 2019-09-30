@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
-const Form = () => {
+const Form = props => {
+    console.log("Form props:", props);
     const [isEditing, setIsEditing ] = useState(false);
 
     const toggleIsEditing = e => {
@@ -35,4 +37,12 @@ const Form = () => {
     )
 }
 
-export default Form;
+const mapStateToProps = state => {
+    return { smurfs: state.smurfs }
+  };
+  
+export default connect(
+    mapStateToProps,
+    {}
+)(Form);
+  
