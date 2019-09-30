@@ -19,6 +19,7 @@ const SmurfList = props => {
                     </div>
                 )
             })}
+            <button onClick={fetchSmurfs}>Fetch Smurfs</button>
         </div>
     )
 };
