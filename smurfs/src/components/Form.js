@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { getSmurfs } from '../actions/index';
+import { getSmurfs, handleChangeAction, postSmurf } from '../actions/index';
 
 const Form = props => {
     console.log("Form props:", props);
@@ -13,12 +13,15 @@ const Form = props => {
 
     const handleChange = e => {
         e.preventDefault();
-        dispatch({ type: 'HANDLE_CHANGE', payload: { name: e.target.name, value: e.target.value } })
+        const name = e.target.name;
+        const value = e.target.value;
+        console.log("in handleChange: name:", name, "value:", value)
+        props.handleChangeAction(name, value);
     };
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch({ type: 'HANDLE_SUBMIT', payload: props.newSmurf })
+        props.postSmurf(props.newSmurf);
         props.getSmurfs();
     };
 
@@ -55,6 +58,6 @@ const mapStateToProps = state => {
   
 export default connect(
     mapStateToProps,
-    { getSmurfs }
+    { getSmurfs, handleChangeAction, postSmurf }
 )(Form);
   

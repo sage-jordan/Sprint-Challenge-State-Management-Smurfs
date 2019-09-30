@@ -17,11 +17,17 @@ export const getSmurfs = () => dispatch => {
 
 export const postSmurf = (newSmurf) => dispatch => {
     dispatch({ type: GET_SMURFS_START });
-    axios.post('http://localhost:3333/smurfs')
+    console.log(newSmurf);
+    axios.post('http://localhost:3333/smurfs', newSmurf)
         .then(res => {
             dispatch({ type: GET_SMURFS_SUCCESS, payload: res.data });
         })
         .catch(err => {
+            console.log("ERROR POSTING");
             dispatch({ type: GET_SMURFS_FAILURE, payload: `${err.response.status} ${err.response.data}`});
         });
+}
+
+export const handleChangeAction = (name, value) => dispatch => {
+    dispatch({ type: 'HANDLE_CHANGE', payload: { name: name, value: value } })
 }

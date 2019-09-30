@@ -4,7 +4,12 @@ export const initialValue = {
     smurfs: [],
     error: '',
     isFetching: false,
-    newSmurf: {}
+    newSmurf: {
+        name: '',
+        age: '',
+        height: '',
+        id: 2
+    }
 };
 
 export const smurfReducer = (state = initialValue, action) => {
@@ -34,12 +39,6 @@ export const smurfReducer = (state = initialValue, action) => {
                     ...state.newSmurf,
                     [action.payload.name]: action.payload.value
                 }
-            }
-        case 'HANDLE_SUBMIT':
-            return {
-                ...state,
-                smurfs: [...state.smurfs, action.payload],
-                newSmurf: {}
             }
         default:
             return state;
