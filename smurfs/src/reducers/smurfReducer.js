@@ -3,7 +3,8 @@ import { GET_SMURFS_START, GET_SMURFS_FAILURE, GET_SMURFS_SUCCESS } from "../act
 export const initialValue = {
     smurfs: [],
     error: '',
-    isFetching: false
+    isFetching: false,
+    newSmurf: {}
 };
 
 export const smurfReducer = (state = initialValue, action) => {
@@ -25,6 +26,20 @@ export const smurfReducer = (state = initialValue, action) => {
                 ...state,
                 error: action.payload,
                 isFetching: false
+            }
+        case 'HANDLE_CHANGE':
+            return {
+                ...state,
+                newSmurf: {
+                    ...state.newSmurf,
+                    [action.payload.name]: action.payload.value
+                }
+            }
+        case 'HANDLE_SUBMIT':
+            return {
+                ...state,
+                smurfs: [...state.smurfs, action.payload],
+                newSmurf: {}
             }
         default:
             return state;
