@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getSmurfs } from '../actions/index';
+import { Card } from 'semantic-ui-react';
 
 const SmurfList = props => {
     console.log("SmurfList props:", props);
@@ -15,7 +16,12 @@ const SmurfList = props => {
             {props.smurfs.map((smurf) => {
                 return (
                     <div>
-                        
+                        <Card 
+                        header={smurf.name}
+                        meta={'Age: ' + smurf.age}
+                        description={'Height: ' + smurf.height}
+                        extra={'ID: ' + smurf.id}
+                        />
                     </div>
                 )
             })}
